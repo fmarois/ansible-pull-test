@@ -29,7 +29,7 @@
   - name: "GET_URL | Download MINIO server"
     get_url:
       url: https://dl.min.io/server/minio/release/linux-amd64/archive/minio.RELEASE.2023-10-25T06-33-25Z
-      checksum: sha256:{{ checksum_content }}
+      checksum: sha256:283a8c38a598a5531a08ec33555846fcb596cc90fdf7a1d794420ada3e110a89
       dest: /usr/local/bin/minio
       mode: 0755
       timeout: 30
