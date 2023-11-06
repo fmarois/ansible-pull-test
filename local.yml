@@ -23,8 +23,7 @@
       checksum_content: "{{ lookup('file', '/tmp/minio.RELEASE.2023-10-25T06-33-25Z.sha256sum') }}"
 
   - name: "print checksum"
-    tasks:
-     - debug: msg="the value of foo.txt is {{ checksum_content }}"
+    debug: msg="the value of foo.txt is {{ checksum_content }}"
 
   
   - name: "GET_URL | Download MINIO server"
