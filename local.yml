@@ -20,7 +20,8 @@
 
   - name: "Store checksum"
     set_fact:
-      root_certificate_content: "{{ lookup('file', '/tmp/{{ miniov }}.sha256sum)' }}"
+      root_certificate_content: "{{ lookup('file', '/tmp/minio.RELEASE.2023-10-25T06-33-25Z.sha256sum)' }}"
+      
 
   
   - name: "GET_URL | Download MINIO server"
