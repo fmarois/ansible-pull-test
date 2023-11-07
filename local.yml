@@ -20,7 +20,7 @@
 
   - name: "GET URI | GET MINIO CHECKSUM
     uri:
-      url: "https://dl.min.io/server/minio/release/linux-amd64/archive/{{ miniov }}.sha256sum"
+      url: https://dl.min.io/server/minio/release/linux-amd64/archive/{{ miniov }}.sha256sum
       return_content: true
     register: url_sha256
     
