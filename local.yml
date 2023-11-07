@@ -15,7 +15,7 @@
     
   - name: "Set URL_CHECKSUM"
     set_fact:
-      minio_checksum: "{{ url_sha256.content.split(' ')[0] }}"      # there are 2 spaces
+      minio_checksum: "{{ url_sha256.content.split(' ')[0] }}" 
   
   - name: "GET_URL | Download MINIO server"
     get_url:
