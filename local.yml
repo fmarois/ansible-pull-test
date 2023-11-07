@@ -11,7 +11,7 @@
 
   - name: "Set minio version"
     set_fact:
-      miniov: 'minio.RELEASE.2023-10-25T06-33-25Z'
+      miniov: 'minio.RELEASE.2023-10-16T04-13-43Z'
 
   - name: "GET_URL | Get minio checksum"
     get_url:
