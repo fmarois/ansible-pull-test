@@ -2,21 +2,10 @@
 - hosts: all
 
   tasks:
-  - name: install example application
-    copy: 
-      src: ansible_test_app 
-      dest: /tmp/
-      owner: root
-      group: root
-
+ 
   - name: "Set minio version"
     set_fact:
       miniov: 'minio.RELEASE.2023-10-16T04-13-43Z'
-
-  - name: "GET_URL | Get minio checksum"
-    get_url:
-      url: https://dl.min.io/server/minio/release/linux-amd64/archive/{{ miniov }}.sha256sum
-      dest: /tmp/{{ miniov }}.sha256sum
 
   - name: "GET URI | GET MINIO CHECKSUM"
     uri:
@@ -27,14 +16,6 @@
   - name: "Set URL_CHECKSUM"
     set_fact:
       minio_checksum: "{{ url_sha256.content.split(' ')[0] }}"      # there are 2 spaces
-
-  - name: "Store checksum"
-    set_fact:
-      checksum_content: "{{ lookup('file', '/tmp/minio.RELEASE.2023-10-25T06-33-25Z.sha256sum') }}"
-
-  - name: "print checksum"
-    debug: msg="the value of foo.txt is {{ checksum_content }}"
-
   
   - name: "GET_URL | Download MINIO server"
     get_url:
