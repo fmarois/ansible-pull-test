@@ -18,6 +18,16 @@
       url: https://dl.min.io/server/minio/release/linux-amd64/archive/{{ miniov }}.sha256sum
       dest: /tmp/{{ miniov }}.sha256sum
 
+  - name: "GET URI | GET MINIO CHECKSUM
+    uri:
+      url: "https://dl.min.io/server/minio/release/linux-amd64/archive/{{ miniov }}.sha256sum"
+      return_content: true
+    register: url_sha256
+    
+  - name: "Set URL_CHECKSUM"
+    set_fact:
+      minio_checksum: "{{ url_sha256.content.split(' ')[0] }}"      # there are 2 spaces
+
   - name: "Store checksum"
     set_fact:
       checksum_content: "{{ lookup('file', '/tmp/minio.RELEASE.2023-10-25T06-33-25Z.sha256sum') }}"
@@ -29,7 +39,7 @@
   - name: "GET_URL | Download MINIO server"
     get_url:
       url: https://dl.min.io/server/minio/release/linux-amd64/archive/minio.RELEASE.2023-10-25T06-33-25Z
-      checksum: sha256:283a8c38a598a5531a08ec33555846fcb596cc90fdf7a1d794420ada3e110a89
+      checksum: "sha256:{{ minio_checksum }}"
       dest: /usr/local/bin/minio
       mode: 0755
       timeout: 30
